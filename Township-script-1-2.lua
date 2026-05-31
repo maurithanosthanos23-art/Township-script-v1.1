@@ -4,36 +4,47 @@ gg.require("101.1", 16142)
 -- FUNÇÃO DE AUTENTICAÇÃO E VALIDAÇÃO REMOTA (INTEGRIDADE)
 -- ========================================================
 local function realizarAutenticacaoRemota()
-    -- URL do seu arquivo de configuração em formato RAW
-    local url_config = "https://raw.githubusercontent.com/maurithanosthanos23-art/Township-script-v1.1/refs/heads/main/config.json"
-    local resposta = gg.makeRequest(url_config)
+    -- Força uma nova semente aleatória para o JSON
+    math.randomseed(os.time() + os.clock())
+    local token = "?nocache=" .. math.random(100000, 999999)
+    
+    local url_config = "https://raw.githubusercontent.com/maurithanosthanos23-art/Township-script-v1.1/refs/heads/main/config.json" .. token
+    
+    -- Cabeçalhos para impedir o cache do JSON no emulador
+    local headers = {
+        ["Cache-Control"] = "no-cache, no-store, must-revalidate",
+        ["Pragma"] = "no-cache",
+        ["Expires"] = "0"
+    }
+    
+    local resposta = gg.makeRequest(url_config, headers)
 
     if not resposta or not resposta.content or resposta.content == "" then
         gg.alert("ℹ️ Erro de Protocolo:\n\nFalha ao conectar ao servidor de autenticação. Verifique sua conexão.", "OK")
         os.exit()
     end
 
-    -- Parsing manual e seguro do JSON para evitar dependências externas
+    -- Parsing manual do JSON
     local status = resposta.content:match('"status"%s*:%s*"([^"]+)"')
     local versao_servidor = resposta.content:match('"versao_atual"%s*:%s*"([^"]+)"')
     local senha_correta = resposta.content:match('"senha_acesso"%s*:%s*"([^"]+)"')
     local mensagem = resposta.content:match('"mensagem_servidor"%s*:%s*"([^"]+)"')
 
-    -- 1. VALIDAÇÃO DE STATUS (ON/OFF)
+    -- 1. VALIDAÇÃO DE STATUS
     if status ~= "ON" then
         gg.alert("ℹ️ Sistema Temporariamente Indisponível:\n\nEste protocolo de otimização encontra-se em manutenção programada pelo administrador.", "OK")
         os.exit()
     end
 
     -- 2. VALIDAÇÃO DE VERSÃO
-    local VERSAO_LOCAL = "1.2" -- Versão deste arquivo atual
+    local VERSAO_LOCAL = "1.1"
     if versao_servidor ~= VERSAO_LOCAL then
         gg.alert("ℹ️ Atualização Obrigatória:\n\nA sua versão local ("..VERSAO_LOCAL..") expirou.\nPor favor, solicite ao fornecedor o novo ativador atualizado para a versão " .. versao_servidor .. ".", "OK")
         os.exit()
     end
 
-    -- 3. SOLICITAÇÃO E VALIDAÇÃO DA SENHA
-    local entrada = gg.prompt({"🔑 Digite a Senha de Acesso:"}, {}, {"text"})
+    -- 3. SOLICITAÇÃO DA SENHA
+    local entrada = gg.prompt({"🔑 Digite a Chave de Acesso Pessoal:"}, {}, {"text"})
     
     if not entrada then 
         gg.toast("❌ Autenticação cancelada.") 
@@ -41,11 +52,10 @@ local function realizarAutenticacaoRemota()
     end
 
     if entrada[1] ~= senha_correta then
-        gg.alert("ℹ️ Acesso Recusado:\n\nA Senha inserida está incorreta ou expirou. Entre em contacto com o administrador para renovar o seu acesso.", "OK")
+        gg.alert("ℹ️ Acesso Recusado:\n\nA chave inserida está incorreta ou expirou. Entre em contacto com o administrador para renovar o seu acesso.", "OK")
         os.exit()
     end
 
-    -- Se passar por tudo, exibe a mensagem de sucesso do servidor
     gg.toast("✅ " .. (mensagem or "Acesso concedido com sucesso!"))
 end
 
