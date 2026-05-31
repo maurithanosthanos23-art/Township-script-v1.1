@@ -4,13 +4,12 @@ gg.require("101.1", 16142)
 -- FUNÇÃO DE AUTENTICAÇÃO E VALIDAÇÃO REMOTA (INTEGRIDADE)
 -- ========================================================
 local function realizarAutenticacaoRemota()
-    -- Força uma nova semente aleatória para o JSON
-    math.randomseed(os.time() + os.clock())
+    -- Correção para evitar erro de float no ambiente Luaj do emulador
+    math.randomseed(math.floor(os.time()))
     local token = "?nocache=" .. math.random(100000, 999999)
     
     local url_config = "https://raw.githubusercontent.com/maurithanosthanos23-art/Township-script-v1.1/refs/heads/main/config.json" .. token
     
-    -- Cabeçalhos para impedir o cache do JSON no emulador
     local headers = {
         ["Cache-Control"] = "no-cache, no-store, must-revalidate",
         ["Pragma"] = "no-cache",
