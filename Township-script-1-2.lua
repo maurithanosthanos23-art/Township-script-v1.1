@@ -36,7 +36,7 @@ local function realizarAutenticacaoRemota()
     end
 
     -- 2. VALIDAÇÃO DE VERSÃO
-    local VERSAO_LOCAL = "1.1"
+    local VERSAO_LOCAL = "1.2"
     if versao_servidor ~= VERSAO_LOCAL then
         gg.alert("ℹ️ Atualização Obrigatória:\n\nA sua versão local ("..VERSAO_LOCAL..") expirou.\nPor favor, solicite ao fornecedor o novo ativador atualizado para a versão " .. versao_servidor .. ".", "OK")
         os.exit()
