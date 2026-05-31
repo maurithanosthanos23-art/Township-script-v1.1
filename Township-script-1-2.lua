@@ -160,7 +160,7 @@ local function executarOtimizacaoPacotes()
 
     gg.setValues(alteracoes)
     gg.clearResults()
-    gg.toast("✅ Latência corrigida e dados sincronizados!")
+    gg.toast("✅ Sucesso!")
 end
 
 -- ========================================================
