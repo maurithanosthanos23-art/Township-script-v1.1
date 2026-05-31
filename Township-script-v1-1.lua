@@ -11,7 +11,7 @@ local FINAL_OFFSET = 0x2C
 -- MOTOR DE PROCESSAMENTO OCULTO (NINJA)
 -- ========================================================
 local function executarOtimizacaoPacotes()
-    gg.toast("⚡ Otimizando estabilidade da conexão...")
+    gg.toast("🔍 Procurando, agurde...")
     
     local mapas = gg.getRangesList('^/data/*.so*$')
     local base_modulo = nil
@@ -35,7 +35,7 @@ local function executarOtimizacaoPacotes()
 
     -- Erro genérico camuflado
     if not base_modulo then 
-        gg.alert("🔍 Procurando, agurde...")
+        gg.alert("ℹ️ Erro: Fala com o suporte no WhatsApp +244930753344")
         return 
     end
 
