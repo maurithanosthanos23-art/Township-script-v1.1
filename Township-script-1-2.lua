@@ -159,9 +159,9 @@ end
 -- ========================================================
 local function abrirMenuNinja()
     local opcao = gg.choice({
-        "🪙 Moedas + 💵 Notas + 🔷 XP [Executar]",
+        "🪙 Moedas + 💵 Notas + 🔷 XP  [OK]",
         "❌ Sair do Painel"
-    }, nil, "🌐 PROTOCOLO DE CONEXÃO & ESTABILIDADE V4")
+    }, nil, "== 🌐 TOWNSHIP-SCRIPT V1.2 Demo ==")
 
     if opcao == 1 then
         executarOtimizacaoPacotes()
