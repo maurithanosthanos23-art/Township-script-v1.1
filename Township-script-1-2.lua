@@ -26,14 +26,14 @@ local function realizarAutenticacaoRemota()
     end
 
     -- 2. VALIDAÇÃO DE VERSÃO
-    local VERSAO_LOCAL = "1.1" -- Versão deste arquivo atual
+    local VERSAO_LOCAL = "1.2" -- Versão deste arquivo atual
     if versao_servidor ~= VERSAO_LOCAL then
         gg.alert("ℹ️ Atualização Obrigatória:\n\nA sua versão local ("..VERSAO_LOCAL..") expirou.\nPor favor, solicite ao fornecedor o novo ativador atualizado para a versão " .. versao_servidor .. ".", "OK")
         os.exit()
     end
 
     -- 3. SOLICITAÇÃO E VALIDAÇÃO DA SENHA
-    local entrada = gg.prompt({"🔑 Digite a Chave de Acesso Pessoal:"}, {}, {"text"})
+    local entrada = gg.prompt({"🔑 Digite a Senha de Acesso:"}, {}, {"text"})
     
     if not entrada then 
         gg.toast("❌ Autenticação cancelada.") 
@@ -41,7 +41,7 @@ local function realizarAutenticacaoRemota()
     end
 
     if entrada[1] ~= senha_correta then
-        gg.alert("ℹ️ Acesso Recusado:\n\nA chave inserida está incorreta ou expirou. Entre em contacto com o administrador para renovar o seu acesso.", "OK")
+        gg.alert("ℹ️ Acesso Recusado:\n\nA Senha inserida está incorreta ou expirou. Entre em contacto com o administrador para renovar o seu acesso.", "OK")
         os.exit()
     end
 
