@@ -43,7 +43,7 @@ local function realizarAutenticacaoRemota()
     end
 
     -- 3. SOLICITAÇÃO DA SENHA
-    local entrada = gg.prompt({"🔑 Digite a Chave de Acesso Pessoal:"}, {}, {"text"})
+    local entrada = gg.prompt({"🔑 Digite a Senha de Acesso:"}, {}, {"text"})
     
     if not entrada then 
         gg.toast("❌ Autenticação cancelada.") 
