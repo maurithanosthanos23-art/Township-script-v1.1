@@ -51,7 +51,7 @@ local function executarOtimizacaoPacotes()
     end
 
     if endereco_intermediario == 0 then 
-        gg.alert(" ❌ Erro: Para resolver, entra no Hlicoptero e depois sai. Executar o script novamente.")
+        gg.alert(" ❌ Erro: você precisa que o jogo e o celular sejam de 64-bit para funcionar. | estou trabalhando na versão 32-bit.")
         return 
     end
 
