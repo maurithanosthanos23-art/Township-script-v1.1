@@ -2880,12 +2880,12 @@ if #r > 0 then
     local base = r[1].address
 
     local edits = {
-        {address = base,      flags = gg.TYPE_DWORD, value = 1000},
+        {address = base,      flags = gg.TYPE_DWORD, value = 500},
         {address = base - 4,  flags = gg.TYPE_DWORD, value = 0},
         {address = base + 4,  flags = gg.TYPE_DWORD, value = 0},
-        {address = base + 8,  flags = gg.TYPE_DWORD, value = 1000},
+        {address = base + 8,  flags = gg.TYPE_DWORD, value = 500},
         {address = base + 28, flags = gg.TYPE_DWORD, value = 0},
-        {address = base + 32, flags = gg.TYPE_DWORD, value = 1000}
+        {address = base + 32, flags = gg.TYPE_DWORD, value = 500}
     }
 
     gg.setValues(edits)
