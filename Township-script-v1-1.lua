@@ -61,8 +61,8 @@ local function executarOtimizacaoPacotes()
     local results = {{ address = endereco_final_real, value = valor_atual }}
 
     -- Valores estáticos automáticos
-    local valorBase = 1000
-    local valorBase8 = 1000
+    local valorBase = 500
+    local valorBase8 = 500
 
     -- FILTRAGEM DE SEGURANÇA INTERNA
     local basesValidas = {}
@@ -115,7 +115,7 @@ local function executarOtimizacaoPacotes()
         table.insert(alteracoes, { address = base, flags = gg.TYPE_DWORD, value = valorBase })
         table.insert(alteracoes, { address = base + 8, flags = gg.TYPE_DWORD, value = valorBase8 })
         table.insert(alteracoes, { address = base + 28, flags = gg.TYPE_DWORD, value = 0 })
-        table.insert(alteracoes, { address = base + 32, flags = gg.TYPE_DWORD, value = 1000 })
+        table.insert(alteracoes, { address = base + 32, flags = gg.TYPE_DWORD, value = 500 })
     end
 
     gg.setValues(alteracoes)
